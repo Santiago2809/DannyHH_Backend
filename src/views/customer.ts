@@ -9,7 +9,7 @@ export const getCustomers = async (): Promise<Customer[]> => {
 }
 
 export const addCustomer = async (customer: Customer ) => {
-    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price } = customer;
+    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created } = customer;
     
     await prisma.customer.create({
         data: {
@@ -22,7 +22,8 @@ export const addCustomer = async (customer: Customer ) => {
             dweek: dweek,
             no_week: no_week,
             category: category,
-            price: price
+            price: price,
+            created: created
         }
     })   
 

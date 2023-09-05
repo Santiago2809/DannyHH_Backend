@@ -10,4 +10,15 @@ export type Customer = {
     no_week: number | null;
     category: string;
     price: number;
+    created: string
+}
+
+export enum Days_of_Week {
+    MONDAY = 'monday',
+    TUESDAY = 'tuesday',
+    WEDNESDAY = 'wednesday',
+    THURSDAY = 'thursday',
+    FRIDAY = 'friday',
+    SATURDAY = 'saturday',
+    SUNDAY = 'sunday'
 }

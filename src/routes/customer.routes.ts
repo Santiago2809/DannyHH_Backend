@@ -1,20 +1,19 @@
 import { Router } from 'express';
 import { addCustomer, delCustomer, editCustomer, getCustomers } from '../views/customer';
 import { Prisma } from '@prisma/client';
+import { Customer } from '../types';
 
 const customer_router = Router();
 
 //Get all customers
 customer_router.get('/', async (_req, res) => {
-    
     const customers = await getCustomers();
-    console.log(customers);
     res.send(customers)
 })
 
 //Add new Customer
 customer_router.post('/addClient', async (req, res) => {
-    const customer = req.body;
+    const customer: Customer = req.body;
     try {
         await addCustomer({...customer});
         res.status(200).send(customer);
@@ -25,7 +24,6 @@ customer_router.post('/addClient', async (req, res) => {
             }
         }
     }
-
 })
 
 //Delete a customer
