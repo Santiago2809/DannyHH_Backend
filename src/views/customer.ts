@@ -6,11 +6,11 @@ const prisma = new PrismaClient()
 export const getCustomers = async (): Promise<Customer[]> => {
     const allCustomers = await prisma.customer.findMany();
     return allCustomers;
+    
 }
 
 export const addCustomer = async (customer: Customer ) => {
-    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created } = customer;
-    
+    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created } = customer; 
     await prisma.customer.create({
         data: {
             name: name,

@@ -11,9 +11,9 @@ export const getEvents = (customers: Customer[]) => {
         let customer_events = [];
 
         const { id, name, phone, address, locality, frequency, hour, dweek, price, created, } = customer;
-        console.log(created);
-        const formated_date = new Date(created);
-        console.log(formated_date.getDay());
+        
+        const formated_date = (new Date(created));
+        console.log(formated_date + " " + formated_date.getDate());
         
         const dweek_created: number = formated_date.getDay();
         if (frequency !== null && dweek != null) {
@@ -21,7 +21,7 @@ export const getEvents = (customers: Customer[]) => {
                 const dayDate = new Date();
                 const event_hour = +hour.slice(0, hour.indexOf(':'))
                 const event_minute = +hour.slice(hour.indexOf(':')+1) 
-                //TODO: falta tener en cuenta la zona horaria por las horas
+
                 const first_event = new Date(formated_date.getFullYear(), formated_date.getMonth(), dayDate.getDate(), event_hour, event_minute);
 
                 customer_events.push({

@@ -20,6 +20,7 @@ customer_router.post('/addClient', async (req, res) => {
     } catch(err: unknown) {
         if(err instanceof Error){
             if(err instanceof Prisma.PrismaClientValidationError){
+                console.log(err);
                 res.status(500).send("Asegurese de llenar los campos obligatorios");
             }
         }
