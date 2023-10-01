@@ -8,13 +8,13 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Users {
+model users {
     userId   Int    @id @default(autoincrement())
     username String @db.VarChar(255)
     pswd     String @db.VarChar(255)
 }
 
-model Customer {
+model customer {
     id        Int     @id @default(autoincrement())
     name      String
     phone     String  @unique
@@ -32,12 +32,12 @@ model Customer {
     @@index([id])
 }
 
-model Team {
+model team {
     id   Int    @id @default(autoincrement())
     name String
 }
 
-model OcasionalDates {
+model ocasionalDates {
     id       Int     @id @default(autoincrement())
     customer String
     date     String
@@ -48,7 +48,7 @@ model OcasionalDates {
     @@index([id])
 }
 
-model CompletedDates {
+model completedDates {
     id       Int    @id @default(autoincrement())
     customer String
     price    Int
