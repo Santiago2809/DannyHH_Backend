@@ -16,11 +16,11 @@ const cors_options: cors.CorsOptions = {
 app.use(cors(cors_options));
 app.use(express.json());
 
-
-app.listen(process.env.PORT, () => {
-    console.log("Server running on port " + process.env.PORT);
-});
 app.use('/auth', auth_router)
 app.use('/', calendar_router)
 app.use('/customer', customer_router );
 app.use('/team', team_router )
+
+app.listen(process.env.PORT, () => {
+    console.log("Server running on port " + process.env.PORT);
+});
