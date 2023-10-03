@@ -1,6 +1,5 @@
 FROM node:18
-WORKDIR /build
-COPY /build /build
+WORKDIR /src
+COPY /src /src
 RUN npm install
 CMD [ "npm", "start" ]
-EXPOSE 3000
