@@ -4,7 +4,7 @@ RUN npm install -g ts-node-dev
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json /
 
 COPY . .
 
