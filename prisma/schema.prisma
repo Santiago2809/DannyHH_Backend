@@ -1,58 +1,57 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_D_URL")
-    relationMode = "prisma"
+  provider     = "mysql"
+  url          = env("DATABASE_D_URL")
+  relationMode = "prisma"
 }
 
 model users {
-    userId   Int    @id @default(autoincrement())
-    username String @db.VarChar(255)
-    pswd     String @db.VarChar(255)
+  userId   Int    @id @default(autoincrement())
+  username String @db.VarChar(255)
+  pswd     String @db.VarChar(255)
 }
 
 model customer {
-    id        Int     @id @default(autoincrement())
-    name      String
-    phone     String  @unique
-    address   String
-    locality  String
-    frequency String?
-    hour      String
-    dweek     String?
-    no_week   Int?
-    category  String
-    price     Int
-    created   String
-    comments  String?
+  id        Int     @id @default(autoincrement())
+  name      String
+  phone     String  @unique
+  address   String
+  locality  String
+  frequency String?
+  hour      String
+  dweek     String?
+  no_week   Int?
+  category  String
+  price     Int
+  created   String
+  comments  String?
+  duration  Int?    @default(2)
 
-    @@index([id])
+  @@index([id])
 }
 
 model team {
-    id   Int    @id @default(autoincrement())
-    name String
+  id   Int    @id @default(autoincrement())
+  name String
 }
 
 model ocasionalDates {
-    id       Int     @id @default(autoincrement())
-    customer String
-    date     String
-    price    Int
-    duration Int
-    comments String?
+  id       Int     @id @default(autoincrement())
+  customer String
+  date     String
+  price    Int
+  duration Int
+  comments String?
 
-    @@index([id])
+  @@index([id])
 }
 
 model completedDates {
-    id       Int    @id @default(autoincrement())
-    customer String
-    price    Int
-    date     String
+  id       Int    @id @default(autoincrement())
+  customer String
+  price    Int
+  date     String
 }
-
-//TODO: HACER EL PUSH DEL NUEVO ESQUEMA DE LA BASE DE DATOS
