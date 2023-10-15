@@ -10,7 +10,8 @@ export type Customer = {
     no_week: number | null;
     category: string;
     price: number;
-    created: string
+    created: string;
+    duration: number;
 }
 
 export enum Days_of_Week {
