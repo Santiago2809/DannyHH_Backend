@@ -63,14 +63,16 @@ export const getEvents = (customers: Customer[]) => {
 }
 
 export const addNewEvent = async( event: any ) => {
-    const { customer, date, price, duration, comments } = event;
+    const { customer, date, price, duration, comments, address, locality } = event;
     await prisma.ocasionalDates.create({
         data: {
             customer,
             date,
             duration,
             price,
-            comments
+            comments,
+            address,
+            locality
         }
     })
 }

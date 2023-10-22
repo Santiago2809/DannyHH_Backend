@@ -45,6 +45,8 @@ model ocasionalDates {
   price    Int
   duration Int
   comments String?
+  address  String? @db.VarChar(255)
+  locality String? @db.VarChar(255)
 
   @@index([id])
 }
