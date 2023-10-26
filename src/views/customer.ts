@@ -3,14 +3,13 @@ import { Customer } from '../types';
 
 const prisma = new PrismaClient()
 
-export const getCustomers = async (): Promise<Customer[]> => {
+export const getCustomers = async (): Promise<any[]> => {
     const allCustomers = await prisma.customer.findMany();
     return allCustomers;
-
 }
 
 export const addCustomer = async (customer: Customer) => {
-    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created } = customer;
+    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created, duration } = customer;
     await prisma.customer.create({
         data: {
             name: name,
@@ -23,13 +22,14 @@ export const addCustomer = async (customer: Customer) => {
             no_week: no_week,
             category: category,
             price: price,
-            created: created
+            created: created,
+            duration: duration
         }
     })
 
 }
 
-export const delCustomer = async (id: number): Promise<Customer> => {
+export const delCustomer = async (id: number): Promise<any> => {
     const delCustomer = await prisma.customer.delete({
         where: {
             id: id

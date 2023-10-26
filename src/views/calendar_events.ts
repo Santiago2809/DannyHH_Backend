@@ -1,5 +1,8 @@
 import { addHours, addMonths } from "date-fns";
-import { Customer } from "../types"
+import { PrismaClient } from '@prisma/client'
+import { Customer } from '../types';
+
+const prisma = new PrismaClient()
 
 
 export const getEvents = (customers: Customer[]) => {
@@ -57,4 +60,19 @@ export const getEvents = (customers: Customer[]) => {
         }
     })
     return events;
+}
+
+export const addNewEvent = async( event: any ) => {
+    const { customer, date, price, duration, comments, address, locality } = event;
+    await prisma.ocasionalDates.create({
+        data: {
+            customer,
+            date,
+            duration,
+            price,
+            comments,
+            address,
+            locality
+        }
+    })
 }

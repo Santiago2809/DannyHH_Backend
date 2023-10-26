@@ -17,7 +17,7 @@ app.use(cors(cors_options));
 app.use(express.json());
 
 app.use('/auth', auth_router)
-app.use('/', calendar_router)
+app.use('/calendar', calendar_router)
 app.use('/customer', customer_router );
 app.use('/team', team_router )
 
