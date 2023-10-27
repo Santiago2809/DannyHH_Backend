@@ -9,9 +9,23 @@ dotenv.config();
 
 const app = express();
 const cors_options: cors.CorsOptions = {
-    origin: '*',
+    origin: (origin: any, callback) => {
+        const ACCEPTED_ORIGINS = [
+            'http://localhost:5173',
+            'https://dannyhh.netlify.app'
+        ]
+        if( ACCEPTED_ORIGINS.includes(origin)){
+            return callback(null, true);
+        }
+        if(!origin){
+            return callback(null, true);
+        }
+
+        return callback(new Error('Not allowed by cors'));
+    },
     optionsSuccessStatus: 200
 }
+app.disable('x-powered-by');
 
 app.use(cors(cors_options));
 app.use(express.json());
