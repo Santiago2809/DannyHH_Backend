@@ -26,7 +26,6 @@ export const addCustomer = async (customer: Customer) => {
             duration: duration
         }
     })
-
 }
 
 export const delCustomer = async (id: number): Promise<any> => {

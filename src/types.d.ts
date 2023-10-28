@@ -13,7 +13,16 @@ export type Customer = {
     created: string;
     duration: number;
 }
-
+export type OcasionalDate = {
+    id: number;
+    customer: string;
+    date: string;
+    price: number;
+    duration: number;
+    comments: string | null;
+    address: string | null;
+    locality: string | null;
+}
 export enum Days_of_Week {
     MONDAY = 'monday',
     TUESDAY = 'tuesday',
