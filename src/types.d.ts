@@ -12,6 +12,11 @@ export type Customer = {
     price: number;
     created: string;
     duration: number;
+    team: string
+}
+export type Teammember = {
+    id: number;
+    name: String
 }
 export type OcasionalDate = {
     id: number;

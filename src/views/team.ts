@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client'
+import { Teammember } from '../types';
 
 const prisma = new PrismaClient();
 
-export const getTeam = async (): Promise<any> => {
-    const allTeam = await prisma.team.findMany();
+export const getTeam = async (): Promise<Teammember[]> => {
+    const allTeam: Teammember[] = await prisma.team.findMany();
     return allTeam;
 }
 
