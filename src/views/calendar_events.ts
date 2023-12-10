@@ -4,68 +4,13 @@ import { OcasionalDate } from '../types';
 const prisma = new PrismaClient()
 
 
-// export const getEvents = (customers: Customer[]) => {
-//     let events: any[] = [];
-//     const days_of_week: string[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-
-//     customers?.forEach(customer => {
-//         if (customer.frequency === null || customer.frequency === 'ocasional') return;
-//         let customer_events = [];
-
-//         const { id, name, phone, address, locality, frequency, hour, dweek, price, created, } = customer;
-        
-//         const formated_date = (new Date(created));
-//         console.log(formated_date + " " + formated_date.getDate());
-        
-//         const dweek_created: number = formated_date.getDay();
-//         if (frequency !== null && dweek != null) {
-//             if (dweek_created === days_of_week.indexOf(dweek)) {
-//                 const dayDate = new Date();
-//                 const event_hour = +hour.slice(0, hour.indexOf(':'))
-//                 const event_minute = +hour.slice(hour.indexOf(':')+1) 
-
-//                 const first_event = new Date(formated_date.getFullYear(), formated_date.getMonth(), dayDate.getDate(), event_hour, event_minute);
-
-//                 customer_events.push({
-//                     id,
-//                     title: name,
-//                     start: first_event,
-//                     end: addHours(first_event, 2),
-//                     phone,
-//                     address,
-//                     locality,
-//                     price
-//                 });
-//                 for (let i = 0; i <= 50; i++) {
-//                     const start_date = customer_events.at(-1)?.start;
-//                     if (start_date instanceof Date) {
-//                         const last_event_date = addMonths(start_date, 1)
-//                         customer_events.push({
-//                             id,
-//                             title: name,
-//                             start: last_event_date,
-//                             end: addHours(last_event_date, 2),
-//                             phone,
-//                             address,
-//                             locality,
-//                             price
-//                         })
-//                     }
-//                 }
-//                 events.push(customer_events);
-//             }
-//         } else {
-
-//         }
-//     })
-//     return events;
-// }
-
+//* Get all ocasional events from the db
 export const getEvents = async (): Promise<any> => {
     const ocasionalEvents: OcasionalDate[] = await prisma.ocasionalDates.findMany();
     return ocasionalEvents;
 }
 
+//* Add a new ocasional event to the database
 export const addNewEvent = async( event: OcasionalDate ) => {
     const { customer, date, price, duration, comments, address, locality } = event;
     await prisma.ocasionalDates.create({
@@ -81,6 +26,7 @@ export const addNewEvent = async( event: OcasionalDate ) => {
     })
 }
 
+//* Edit a ocasional event from the database
 export const editEvent = async (id: number, editValues: Partial<OcasionalDate>): Promise<any> => {
     await prisma.ocasionalDates.update({
         where: { id: id},
@@ -90,6 +36,7 @@ export const editEvent = async (id: number, editValues: Partial<OcasionalDate>):
     })
 }
 
+//* Delete an ocasional event from the database
 export const deleteEvent = async (id: number): Promise<any> => {
     await prisma.ocasionalDates.delete({
         where: { id: id }

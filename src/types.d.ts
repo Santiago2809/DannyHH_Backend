@@ -28,6 +28,12 @@ export type OcasionalDate = {
     address: string | null;
     locality: string | null;
 }
+export type ConfirmedDate = {
+    id: number;
+    customerId: number;
+    price: number;
+    date: string
+}
 export enum Days_of_Week {
     MONDAY = 'monday',
     TUESDAY = 'tuesday',

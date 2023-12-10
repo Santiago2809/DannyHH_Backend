@@ -46,3 +46,12 @@ export const editCustomer = async (id: number, editingValues: Partial<Customer>)
         }
     })
 };
+
+export const editCustomerTeam = async(id: number, selectedTeam: string | null) => {
+    await prisma.customer.update({
+        where: { id: id },
+        data: {
+            team: selectedTeam
+        }
+    })
+}
