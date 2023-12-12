@@ -12,6 +12,11 @@ export type Customer = {
     price: number;
     created: string;
     duration: number;
+    team: string
+}
+export type Teammember = {
+    id: number;
+    name: String
 }
 export type OcasionalDate = {
     id: number;
@@ -22,6 +27,12 @@ export type OcasionalDate = {
     comments: string | null;
     address: string | null;
     locality: string | null;
+}
+export type ConfirmedDate = {
+    id: number;
+    customerId: number;
+    price: number;
+    date: string
 }
 export enum Days_of_Week {
     MONDAY = 'monday',

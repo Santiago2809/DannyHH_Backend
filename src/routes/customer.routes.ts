@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addCustomer, delCustomer, editCustomer, getCustomers } from '../views/customer';
+import { addCustomer, delCustomer, editCustomer, editCustomerTeam, getCustomers } from '../views/customer';
 import { Prisma } from '@prisma/client';
 import { Customer } from '../types';
 
@@ -59,4 +59,16 @@ customer_router.put('/editCustomer', async (req, res) => {
     }
 })
 
+//Edit customer's team
+customer_router.put('/editTeam', async(req, res) => {
+    const { id, selectedTeam }: { id: number, selectedTeam: string } = req.body;
+    try {
+        await editCustomerTeam(id, selectedTeam);
+        res.status(200).send("Customer team updated successfully!");
+    } catch(e){
+        if( e instanceof Error || e instanceof Prisma.PrismaClientKnownRequestError){
+            res.status(400).send(e);
+        }
+    }
+})
 export default customer_router;

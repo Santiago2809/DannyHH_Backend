@@ -9,7 +9,7 @@ export const getCustomers = async (): Promise<any[]> => {
 }
 
 export const addCustomer = async (customer: Customer) => {
-    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created, duration } = customer;
+    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created, duration, team } = customer;
     await prisma.customer.create({
         data: {
             name: name,
@@ -23,7 +23,8 @@ export const addCustomer = async (customer: Customer) => {
             category: category,
             price: price,
             created: created,
-            duration: duration
+            duration: duration,
+            team: team
         }
     })
 }
@@ -45,3 +46,12 @@ export const editCustomer = async (id: number, editingValues: Partial<Customer>)
         }
     })
 };
+
+export const editCustomerTeam = async(id: number, selectedTeam: string | null) => {
+    await prisma.customer.update({
+        where: { id: id },
+        data: {
+            team: selectedTeam
+        }
+    })
+}
