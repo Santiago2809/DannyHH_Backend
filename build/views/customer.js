@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.editCustomer = exports.delCustomer = exports.addCustomer = exports.getCustomers = void 0;
+exports.editCustomerTeam = exports.editCustomer = exports.delCustomer = exports.addCustomer = exports.getCustomers = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const getCustomers = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -18,7 +18,7 @@ const getCustomers = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getCustomers = getCustomers;
 const addCustomer = (customer) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created } = customer;
+    const { name, phone, address, locality, frequency, hour, dweek, no_week, category, price, created, duration, team } = customer;
     yield prisma.customer.create({
         data: {
             name: name,
@@ -31,7 +31,9 @@ const addCustomer = (customer) => __awaiter(void 0, void 0, void 0, function* ()
             no_week: no_week,
             category: category,
             price: price,
-            created: created
+            created: created,
+            duration: duration,
+            team: team
         }
     });
 });
@@ -52,3 +54,12 @@ const editCustomer = (id, editingValues) => __awaiter(void 0, void 0, void 0, fu
     });
 });
 exports.editCustomer = editCustomer;
+const editCustomerTeam = (id, selectedTeam) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma.customer.update({
+        where: { id: id },
+        data: {
+            team: selectedTeam
+        }
+    });
+});
+exports.editCustomerTeam = editCustomerTeam;

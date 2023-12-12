@@ -67,4 +67,17 @@ customer_router.put('/editCustomer', (req, res) => __awaiter(void 0, void 0, voi
         }
     }
 }));
+//Edit customer's team
+customer_router.put('/editTeam', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id, selectedTeam } = req.body;
+    try {
+        yield (0, customer_1.editCustomerTeam)(id, selectedTeam);
+        res.status(200).send("Customer team updated successfully!");
+    }
+    catch (e) {
+        if (e instanceof Error || e instanceof client_1.Prisma.PrismaClientKnownRequestError) {
+            res.status(400).send(e);
+        }
+    }
+}));
 exports.default = customer_router;
