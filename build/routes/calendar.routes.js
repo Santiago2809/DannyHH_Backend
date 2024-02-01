@@ -67,3 +67,7 @@ exports.calendar_router.delete('/delEvent', (req, res) => __awaiter(void 0, void
         }
     }
 }));
+// Confirm finished event
+exports.calendar_router.post('/confirmEvent', (_req, _res) => __awaiter(void 0, void 0, void 0, function* () {
+    //todo: hacer la ruta de confirmar el evento para despues hacer la funcion que maneje la conexion con la db
+}));

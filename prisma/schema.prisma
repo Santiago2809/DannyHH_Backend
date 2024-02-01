@@ -35,8 +35,9 @@ model customer {
 }
 
 model team {
-  id   Int    @id @default(autoincrement())
-  name String
+  id    Int    @id @default(autoincrement())
+  name  String
+  phone String
 }
 
 model ocasionalDates {
@@ -53,8 +54,11 @@ model ocasionalDates {
 }
 
 model completedDates {
-  id       Int    @id @default(autoincrement())
-  customer String
-  price    Int
-  date     String
+  id          Int    @id @default(autoincrement())
+  customer    String
+  price       Int
+  date        String
+  customer_id Int
+  address     String
+  team        String
 }

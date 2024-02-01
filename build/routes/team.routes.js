@@ -20,12 +20,13 @@ team_router.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* 
 }));
 //* Add team member
 team_router.post('/addTeam', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name: teamMember } = req.body;
+    const { name, phone } = req.body;
     try {
-        yield (0, team_1.addTeam)(teamMember);
+        yield (0, team_1.addTeam)(name, phone);
         res.status(200).send({
             message: "Team member added successfully",
-            name: teamMember
+            name,
+            phone
         });
     }
     catch (err) {
@@ -39,9 +40,9 @@ team_router.post('/addTeam', (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 //* Edit team member
 team_router.put('/editTeam', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, name } = req.body;
+    const { id, editValues } = req.body;
     try {
-        yield (0, team_1.editTeammate)(id, name);
+        yield (0, team_1.editTeammate)(id, editValues);
         res.status(200).send("Customer updated successfully!");
     }
     catch (e) {

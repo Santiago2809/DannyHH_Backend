@@ -16,7 +16,8 @@ export type Customer = {
 }
 export type Teammember = {
     id: number;
-    name: String
+    name: string
+    phone: string
 }
 export type OcasionalDate = {
     id: number;
