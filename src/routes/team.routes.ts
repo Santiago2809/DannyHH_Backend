@@ -13,12 +13,13 @@ team_router.get('/', async (_req, res) => {
 
 //* Add team member
 team_router.post('/addTeam', async (req, res) => {
-    const {name: teamMember}: {name: string} = req.body; 
+    const { name, phone }: {name: string, phone: string} = req.body; 
     try {
-        await addTeam(teamMember);
+        await addTeam(name,phone);
         res.status(200).send({
             message: "Team member added successfully",
-            name: teamMember
+            name,
+            phone
         });
     } catch(err: unknown) {
         if(err instanceof Error){
@@ -32,9 +33,9 @@ team_router.post('/addTeam', async (req, res) => {
 
 //* Edit team member
 team_router.put('/editTeam', async(req, res) => {
-    const {id, name }: {id: number, name: string} = req.body;
+    const {id, editValues }: {id: number, editValues: Partial<Teammember> } = req.body;
     try {
-        await editTeammate( id, name);
+        await editTeammate( id, editValues);
         res.status(200).send("Customer updated successfully!")
     } catch(e){
         if(e instanceof Error || e instanceof Prisma.PrismaClientKnownRequestError){

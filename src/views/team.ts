@@ -8,10 +8,11 @@ export const getTeam = async (): Promise<Teammember[]> => {
     return allTeam;
 }
 
-export const addTeam = async (teammate: string) => {
+export const addTeam = async (name: string, phone: string) => {
     await prisma.team.create({
         data: {
-            name: teammate
+            name: name,
+            phone: phone
         }
     })
 }
@@ -25,11 +26,11 @@ export const delTeammate = async (id: number): Promise<any> => {
     return delTeam;
 }
 
-export const editTeammate = async (id: number, editingValue: string) => {
+export const editTeammate = async (id: number, editingValues: Partial<Teammember>) => {
     await prisma.team.update({
         where: { id: id },
         data: {
-            name: editingValue
+            ...editingValues
         }
     })
 };

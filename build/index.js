@@ -13,13 +13,26 @@ const calendar_routes_1 = require("./routes/calendar.routes");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const cors_options = {
-    origin: '*',
+    origin: (origin, callback) => {
+        const ACCEPTED_ORIGINS = [
+            'http://localhost:5173',
+            'https://dannyhh.netlify.app'
+        ];
+        if (ACCEPTED_ORIGINS.includes(origin)) {
+            return callback(null, true);
+        }
+        if (!origin) {
+            return callback(null, true);
+        }
+        return callback(new Error('Not allowed by cors'));
+    },
     optionsSuccessStatus: 200
 };
+app.disable('x-powered-by');
 app.use((0, cors_1.default)(cors_options));
 app.use(express_1.default.json());
 app.use('/auth', auth_routes_1.router);
-app.use('/', calendar_routes_1.calendar_router);
+app.use('/calendar', calendar_routes_1.calendar_router);
 app.use('/customer', customer_routes_1.default);
 app.use('/team', team_routes_1.default);
 app.listen(process.env.PORT, () => {

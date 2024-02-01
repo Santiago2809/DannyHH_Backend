@@ -17,10 +17,11 @@ const getTeam = () => __awaiter(void 0, void 0, void 0, function* () {
     return allTeam;
 });
 exports.getTeam = getTeam;
-const addTeam = (teammate) => __awaiter(void 0, void 0, void 0, function* () {
+const addTeam = (name, phone) => __awaiter(void 0, void 0, void 0, function* () {
     yield prisma.team.create({
         data: {
-            name: teammate
+            name: name,
+            phone: phone
         }
     });
 });
@@ -34,12 +35,10 @@ const delTeammate = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return delTeam;
 });
 exports.delTeammate = delTeammate;
-const editTeammate = (id, editingValue) => __awaiter(void 0, void 0, void 0, function* () {
+const editTeammate = (id, editingValues) => __awaiter(void 0, void 0, void 0, function* () {
     yield prisma.team.update({
         where: { id: id },
-        data: {
-            name: editingValue
-        }
+        data: Object.assign({}, editingValues)
     });
 });
 exports.editTeammate = editTeammate;

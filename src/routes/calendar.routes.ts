@@ -57,3 +57,8 @@ calendar_router.delete('/delEvent', async (req, res) => {
         }
     }
 });
+
+// Confirm finished event
+calendar_router.post('/confirmEvent', async (_req, _res) => {
+    //todo: hacer la ruta de confirmar el evento para despues hacer la funcion que maneje la conexion con la db
+})
