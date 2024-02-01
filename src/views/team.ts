@@ -18,9 +18,10 @@ export const addTeam = async (name: string, phone: string) => {
 }
 
 export const delTeammate = async (id: number): Promise<any> => {
+    const idToDelete = +id;
     const delTeam = await prisma.team.delete({
         where: {
-            id: id
+            id: idToDelete
         }
     })
     return delTeam;

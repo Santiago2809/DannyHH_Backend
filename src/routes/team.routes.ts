@@ -48,7 +48,7 @@ team_router.put('/editTeam', async(req, res) => {
 team_router.delete('/delTeam', async(req, res) => {
     const {id}: {id: number} = req.body;
     try {
-        await delTeammate(id);
+        await delTeammate(id);  
         res.status(200).send("Team member deleted successfully!")
     } catch(e){
         if(e instanceof Error || e instanceof Prisma.PrismaClientKnownRequestError){
