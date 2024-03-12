@@ -5,7 +5,7 @@ import customer_router from './routes/customer.routes';
 import team_router from './routes/team.routes';
 import { router as auth_router } from './routes/auth.routes';
 import { calendar_router } from './routes/calendar.routes';
-import { isAuth } from '../middleware/login-user';
+import { isAuth } from './middleware/login-user';
 dotenv.config();
 
 const app = express();

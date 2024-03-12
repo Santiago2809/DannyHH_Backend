@@ -10,7 +10,7 @@ const customer_routes_1 = __importDefault(require("./routes/customer.routes"));
 const team_routes_1 = __importDefault(require("./routes/team.routes"));
 const auth_routes_1 = require("./routes/auth.routes");
 const calendar_routes_1 = require("./routes/calendar.routes");
-const login_user_1 = require("../middleware/login-user");
+const login_user_1 = require("./middleware/login-user");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const cors_options = {

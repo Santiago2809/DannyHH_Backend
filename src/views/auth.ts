@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 export const loginUser = async (user: string, password: string): Promise<any> => {
 
     try {
-
+        
         const dbUser = await prisma.users.findUniqueOrThrow({
             where: {
                 username: user
@@ -20,18 +20,21 @@ export const loginUser = async (user: string, password: string): Promise<any> =>
         })
         const userPswd = dbUser.pswd;
         const result = await bcrypt.compare(password, userPswd);
+
         //* If the passwords match, then we create a jwt token to authenticate the user
         if (!result) return false;
-
+        
         const token = jwt.sign({ user, name: "dannysHH" }, secretKey ? secretKey : "clave", { expiresIn: '2h' });
+        const tokenCreatedAt = new Date();
+        console.log("Token created at: " + tokenCreatedAt.toUTCString());
         // console.log(token);
         return token;
 
     } catch (e: unknown) {
-
         if (e instanceof PrismaClientKnownRequestError) {
             return false
             // return Promise.reject("User not found!")
         }
+        return false
     }
 };

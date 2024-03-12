@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
 const auth_1 = require("../views/auth");
-const verify_token_1 = require("../../middleware/verify-token");
+const verify_token_1 = require("../middleware/verify-token");
 exports.router = (0, express_1.Router)();
 exports.router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { user, password } = req.body;
