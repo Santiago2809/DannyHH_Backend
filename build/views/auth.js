@@ -35,7 +35,8 @@ const loginUser = (user, password) => __awaiter(void 0, void 0, void 0, function
             return false;
         const token = jsonwebtoken_1.default.sign({ user, name: "dannysHH" }, secretKey ? secretKey : "clave", { expiresIn: '2h' });
         const tokenCreatedAt = new Date();
-        console.log("Token created at: " + tokenCreatedAt.toUTCString());
+        tokenCreatedAt.toString().replace('Z', '-0700');
+        console.log("Token created at: " + tokenCreatedAt);
         // console.log(token);
         return token;
     }
