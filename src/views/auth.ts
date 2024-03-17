@@ -26,7 +26,8 @@ export const loginUser = async (user: string, password: string): Promise<any> =>
         
         const token = jwt.sign({ user, name: "dannysHH" }, secretKey ? secretKey : "clave", { expiresIn: '2h' });
         const tokenCreatedAt = new Date();
-        console.log("Token created at: " + tokenCreatedAt.toUTCString());
+        tokenCreatedAt.toString().replace('Z','-0700');
+        console.log("Token created at: " + tokenCreatedAt);
         // console.log(token);
         return token;
 
